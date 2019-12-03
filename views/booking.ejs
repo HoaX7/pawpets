@@ -1,0 +1,146 @@
+<link rel="stylesheet" type="text/css" href="log.css">
+<style>
+  #pp {
+    color: rgb(48, 45, 45);
+  }
+
+  #pp:hover {
+    color: rgb(105, 99, 99);
+  }
+
+  .del {
+    color: red;
+  }
+
+  .del:hover {
+    color: red;
+  }
+</style>
+<% include ./header.ejs %>
+<div>
+  <div id="wrapper">
+    <div id="sidebar">
+      <div class="toggle-btn" onclick="toggleSideBar()">
+        <span class="menu"><img src="menu.png" alt=""></span>
+      </div>
+
+      <a id="pp" href="/">
+        <h2 class="display-4" style="font-size: 25px;">PawPets</h2>
+      </a>
+
+      <ul>
+        <% if(user.isAdmin){ %>
+        <a href="/users">
+          <li id="user"><img src="pet.png" alt=""> Users</li>
+        </a>
+        <a href="/settings">
+          <li id="sett"><img src="gear.png" alt=""> Settings</li>
+        </a>
+        <a href="/current">
+          <li id="sett"><img src="pie.png" alt=""> Status</li>
+        </a>
+        <% }; %>
+        <a href="/pets">
+          <li id="pet"><img src="dog.png" alt=""> <img src="cat1.png" alt=""> Pets</li>
+        </a>
+        <a href="/bookings">
+          <li id="book" class="select"><img src="booking.png" alt=""> Bookings</li>
+        </a>
+      </ul>
+    </div>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <div class="dropdown">
+          <a class="btn drop" href="#" role="button" data-toggle="dropdown">
+
+            <p class="lead mb-3"><% if(user.gen){ %>
+              <img src="man.png" alt="">
+              <% } else { %>
+              <img src="girl.png" alt="">
+              <% } %> Welcome <%= user.name %></p>
+          </a>
+
+          <div class="dropdown-menu">
+            <a href="/profiles" class=" dropdown-item">Profile</a>
+            <a href="/logout" class="btn dropdown-item">Logout</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">Bookings</li>
+            </ol>
+          </nav>
+          <% include ./partials/messages %>
+          <h2 style="padding: 10px;"><img src="online-booking.png" alt=""> Bookings</h2>
+          <a href="/newBook"><button type="" class="btn btn-danger"><img style="color=white;" src="add.png" alt="">
+              New</button></a>
+          <% if(user.isAdmin){ %>
+          <form action="/bookings" method="GET">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>BookingID: </label>
+                <input type="text" name="bid" class="form-control">
+              </div>
+              <div class="form-group col-md-6">
+                <label>OwnerName: </label>
+                <input type="text" placeholder="Name" name="oname" class="form-control">
+              </div>
+            </div>
+            <a type="" href="/bookings" class="btn btn-secondary" style="float:right;"><img src="refresh.png" alt="">
+              Reset</a>
+            <button type="submit" style="float: right;margin-right: 20px;" class="btn btn-danger"><img
+                style="color=white;" src="search.png" alt=""> Search</button>
+          </form>
+          <% } %>
+          <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+            <thead style="background-color:rgb(250, 250, 250);">
+              <tr>
+                <th scope="col">BookingID</th>
+                <th scope="col">OwnerName</th>
+                <th scope="col">PetName</th>
+                <th scope="col">Check In</th>
+                <th scope="col">Check Out</th>
+                <th>Total Fee</th>
+                <th>CreatedAt</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% res1['rows'].forEach((data)=>{ %>
+              <tr>
+                <th scope="row"><%= data['bid'] %></th>
+                <td><%= data['cusname'] %></td>
+                <td><%= data['name'] %></td>
+                <td><%= data['checkin'].toDateString() %> <br> <%= data['checkin'].toLocaleTimeString() %></td>
+                <td><%= data['checkout'].toDateString() %> <br> <%= data['checkin'].toLocaleTimeString() %></td>
+                <td><%= data['totalfee'] %></td>
+                <% x = data['created_at'].toDateString() %>
+                <td><%= x %></td>
+
+                <td><a href="/bookings/edit/<%= data['bid'] %>" class="btn-secondary btn btn-sm mr-3"><img
+                      src="/edit.png" alt=""> Edit</a>
+                  <a href="/book/<%= data['bid'] %>" class="del btn-danger btn btn-sm"><img src="/cancel.png" alt="">
+                    Cancel</a></td>
+                <% }); %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSideBar() {
+      document.getElementById('wrapper').classList.toggle('active');
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+  </script>
+
+  <% include ./footer.ejs %>

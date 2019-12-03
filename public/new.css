@@ -1,0 +1,9 @@
+#new {
+	border: none;
+	margin-left: 5%;
+	width: 60%;
+}
+
+a:hover {
+	text-decoration: none !important;
+}

@@ -1,0 +1,30 @@
+<% include ./header.ejs %>
+<style>
+    .container {
+        margin: auto;
+    }
+    hr {
+        max-width: 600px;
+        margin-left: 20%; 
+    }
+    .paw {
+        margin-left: 40%;
+        margin-top: 15%;
+    }
+    a {
+        margin-left: 20%;
+    }
+    h1, h3 {
+        text-align:center;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+</style>
+<div class="container">
+   <div class="paw"><img src="/404-error.png" alt="" >  <img src="/paw-print.png" alt=""></div>
+    <h1 class="display-4">Paw not found</h1> <hr>
+    <h3 class="display-5 text-muted">route does not exist</h3>
+    <a href="/" class="text-muted display-5"><img src="/left-arrow.png" alt=""> back</a>
+</div>
+<% include ./footer.ejs %>

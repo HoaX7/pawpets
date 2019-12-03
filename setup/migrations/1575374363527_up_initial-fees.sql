@@ -1,0 +1,1 @@
+INSERT INTO fee VALUES(1,'150');

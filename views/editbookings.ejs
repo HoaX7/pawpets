@@ -1,0 +1,147 @@
+<link rel="stylesheet" type="text/css" href="/log.css">
+<link rel="stylesheet" type="text/css" href="/new.css">
+<style>
+    #pp {
+        color: rgb(48, 45, 45);
+    }
+
+    #pp:hover {
+        color: rgb(105, 99, 99);
+    }
+
+    .fee:hover {
+        cursor: pointer;
+    }
+</style>
+<% include ./header.ejs %>
+
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css">
+<div>
+    <div id="wrapper">
+        <div id="sidebar">
+            <div class="toggle-btn" onclick="toggleSideBar()">
+                <span class="menu"><img src="/menu.png" alt=""></span>
+            </div>
+
+            <a id="pp" href="/">
+                <h2 class="display-4" style="font-size: 25px;">PawPets</h2>
+            </a>
+            <ul>
+                <% if(user.isAdmin){ %>
+                <a href="/users">
+                    <li id="user"><img src="/pet.png" alt=""> Users</li>
+                </a>
+                <a href="/settings">
+                    <li id="sett"><img src="/gear.png" alt=""> Settings</li>
+                </a>
+                <a href="/current">
+                    <li id="sett"><img src="/pie.png" alt=""> Status</li>
+                </a>
+                <% }; %>
+                <a href="/pets">
+                    <li id="pet"><img src="/dog.png" alt=""> <img src="/cat1.png" alt=""> Pets</li>
+                </a>
+                <a href="/bookings">
+                    <li id="book" class="select"><img src="/booking.png" alt=""> Bookings</li>
+                </a>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="dropdown">
+                    <a class="btn drop" href="#" role="button" data-toggle="dropdown">
+                        <p class="lead mb-3"><% if(user.gen){ %>
+                            <img src="/man.png" alt="">
+                            <% } else { %>
+                            <img src="/girl.png" alt="">
+                            <% } %> Welcome <%= user.name %></p>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <a href="/profiles" class=" dropdown-item">Profile</a>
+                        <a href="/logout" class="btn dropdown-item">Logout</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="jumbotron">
+                <div class="container">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/bookings">Bookings</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Booking</li>
+                        </ol>
+                        <% include ./partials/messages %>
+                    </nav>
+                    <h2 style="padding: 10px;"><img src="/pencil.png" alt=""> Edit Booking</h2>
+                    <% res2['rows'].forEach((data) =>{ %>
+                    <form action="/bookings/edit/<%= data['bid'] %>?_method=PUT" method="POST"">
+                        <% }) %>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Price per day:</label>
+                            <div class="col-sm-10">
+                                <% res1['rows'].forEach((data) =>{ %>
+                                <input type="text" readonly class="form-control" id="price" value="<%= data['fee'] %>">
+                                <% }); %>
+                            </div>
+                        </div>
+                        <% res2['rows'].forEach((data) =>{ %>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">PetID:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="pid" value="<%= data['pid'] %>" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Arrival:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="arv"
+                                    value="<%= data['checkin'].toDateString() %>" id="date" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Departure:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="dep"
+                                    value="<%= data['checkout'].toDateString() %>" id="dep" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <a id="but" style="margin-right: 20px;" class="btn btn-light fee"> Check fee</a>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">TotalFee:</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control" value="<%= data['totalfee'] %>"
+                                    name="fee" id="fee">
+                            </div>
+                        </div>
+                        <% }); %>
+                        <button type="submit" style="margin-right: 20px;" class="btn btn-danger"><img
+                                style="color=white;" src="/save.png" alt=""> Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSideBar() {
+            document.getElementById('wrapper').classList.toggle('active');
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+    </script>
+    <script src="/fee.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js"></script>
+    <script>
+        $("#date").datetimepicker();
+        $('#dep').datetimepicker();
+    </script>
+
+    <% include ./footer.ejs %>

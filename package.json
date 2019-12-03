@@ -1,0 +1,35 @@
+{
+  "name": "styless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dbcreate": "node ./setup/createdb.js",
+    "dbmigrate": "node ./setup/migrate.js",
+    "debug": "node --nolazy --inspect-brk=9229 myProgram.js",
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.7.6",
+    "node-pg-migrate": "^3.23.3",
+    "node-sql-migrations": "^1.0.7",
+    "nodemon": "^1.19.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.12.1",
+    "postgres-migrations": "^3.0.2",
+    "sql-migrations": "^1.0.6"
+  }
+}

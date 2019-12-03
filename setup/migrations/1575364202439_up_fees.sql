@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS fee( id serial, fee varchar(255) );

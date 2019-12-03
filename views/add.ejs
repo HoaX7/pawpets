@@ -1,0 +1,131 @@
+<link rel="stylesheet" type="text/css" href="log.css">
+<link rel="stylesheet" type="text/css" href="new.css">
+<style>
+  #pp {
+    color: rgb(48, 45, 45);
+  }
+
+  #pp:hover {
+    color: rgb(105, 99, 99);
+  }
+</style>
+<% include ./header.ejs %>
+<div>
+  <div id="wrapper">
+    <div id="sidebar">
+      <div class="toggle-btn" onclick="toggleSideBar()">
+        <span class="menu"><img src="menu.png" alt=""></span>
+      </div>
+
+      <a id="pp" href="/">
+        <h2 class="display-4" style="font-size: 25px;">PawPets</h2>
+      </a>
+
+      <ul>
+        <a href="/users">
+          <li id="user" class="select"><img src="pet.png" alt=""> Users</li>
+        </a>
+        <a href="/settings">
+          <li id="sett"><img src="gear.png" alt=""> Settings</li>
+        </a>
+        <a href="/current">
+          <li id="sett"><img src="pie.png" alt=""> Status</li>
+        </a>
+        <a href="/pets">
+          <li id="pet"><img src="dog.png" alt=""> <img src="cat1.png" alt=""> Pets</li>
+        </a>
+        <a href="/bookings">
+          <li id="book"><img src="booking.png" alt=""> Bookings</li>
+        </a>
+      </ul>
+    </div>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <div class="dropdown">
+          <a class="btn drop" href="#" role="button" data-toggle="dropdown">
+            <p class="lead mb-3"><% if(user.gen){ %>
+              <img src="man.png" alt="">
+              <% } else { %>
+              <img src="girl.png" alt="">
+              <% } %> Welcome <%= user.name %></p>
+          </a>
+
+          <div class="dropdown-menu">
+            <a href="/profiles" class=" dropdown-item">Profile</a>
+            <a href="/logout" class="btn dropdown-item">Logout</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="jumbotron">
+        <div class="container">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/users">Users</a></li>
+              <li class="breadcrumb-item active" aria-current="page">New user(s)</li>
+            </ol>
+          </nav>
+          <h2 style="padding: 10px;">New User(s)</h2>
+          <form id="new" action="/newUser" method="POST">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Name:</label>
+              <div class="col-sm-10">
+                <input type="name" id="name" name="name" required class="form-control" placeholder="Enter Name"
+                  value="<%= typeof name != 'undefined' ? name : '' %>" /></div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Email:</label>
+              <div class="col-sm-10">
+                <input type="email" id="email" name="email" required class="form-control" placeholder="Enter Email"
+                  value="<%= typeof email != 'undefined' ? email : '' %>" /></div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Phone:</label>
+              <div class="col-sm-10">
+                <input type="text" id="phone" name="phone" required class="form-control" placeholder="Phone Number"
+                  value="<%= typeof phone != 'undefined' ? phone : '' %>" /></div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Password:</label>
+              <div class="col-sm-10">
+                <input type="password" id="password" name="password" required class="form-control"
+                  placeholder="Create password" value="<%= typeof password != 'undefined' ? password : '' %>" /></div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Gender:</label>
+              <div class="col-sm-10">
+                <select style="width: 300px;" name="gender" class="form-control custom-select my-1 mr-sm-2">
+                  <option value="1">Male</option>
+                  <option value="2">Female</option>
+                  <option value="3">Others</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Role:</label>
+              <div class="col-sm-10">
+                <select style="width: 300px;" name="roles" class="form-control custom-select my-1 mr-sm-2">
+                  <option value="1">Manager</option>
+                  <option value="2">Employee</option>
+                  <option value="3">Customer</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" style="margin-right: 20px;" class="btn btn-danger"><img style="color=white;"
+                src="save.png" alt=""> Save</button>
+            <a class="btn btn-light" style="" href="/newUser"><img src="re_black.png" alt=""> Reset</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function toggleSideBar() {
+      document.getElementById('wrapper').classList.toggle('active');
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
+
+  <% include ./footer.ejs %>

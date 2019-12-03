@@ -1,0 +1,105 @@
+<link rel="stylesheet" type="text/css" href="log.css">
+<link rel="stylesheet" type="text/css" href="new.css">
+<style>
+    #pp {
+        color: rgb(48, 45, 45);
+    }
+
+    #pp:hover {
+        color: rgb(105, 99, 99);
+    }
+</style>
+<% include ./header.ejs %>
+<div>
+    <div id="wrapper">
+        <div id="sidebar">
+            <div class="toggle-btn" onclick="toggleSideBar()">
+                <span class="menu"><img src="menu.png" alt=""></span>
+            </div>
+
+            <a id="pp" href="/">
+                <h2 class="display-4" style="font-size: 25px;">PawPets</h2>
+            </a>
+            <ul>
+                <% if(user.isAdmin){ %>
+                <a href="/users">
+                    <li id="user"><img src="pet.png" alt=""> Users</li>
+                </a>
+                <a href="/settings">
+                    <li id="sett"><img src="gear.png" alt=""> Settings</li>
+                </a>
+                <a href="/current">
+                    <li class="select" id="sett"><img src="pie.png" alt=""> Status</li>
+                </a>
+                <% }; %>
+                <a href="/pets">
+                    <li id="pet"><img src="dog.png" alt=""> <img src="cat1.png" alt=""> Pets</li>
+                </a>
+                <a href="/bookings">
+                    <li id="book"><img src="booking.png" alt=""> Bookings</li>
+                </a>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="dropdown">
+                    <a class="btn drop" href="#" role="button" data-toggle="dropdown">
+                        <p class="lead mb-3"><% if(user.gen){ %>
+                            <img src="man.png" alt="">
+                            <% } else { %>
+                            <img src="girl.png" alt="">
+                            <% } %> Welcome <%= user.name %></p>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <a href="/profiles" class=" dropdown-item">Profile</a>
+                        <a href="/logout" class="btn dropdown-item">Logout</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="jumbotron">
+                <div class="container">
+                    <% include ./partials/messages %>
+                    <h2 style="padding: 10px;"><img src="pet-collar.png" alt=""><img src="jingle-bell.png" alt=""> 
+                        Number of pets at the cafe <img src="coffee.png" alt=""> </h2>
+                    <form>
+                        <img src="pie-chart.png" alt="" style="margin:-40;">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">TotalCount:</label>
+                            <% res1['rows'].forEach((data)=>{ %>
+                            <div class="col-sm-10 form-control" readonly> <%= data['totalcount'] %>
+                                <% }); %>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Number of Cats:</label>
+                            <% res2['rows'].forEach((data)=>{ %>
+                            <div class="col-sm-10 form-control" readonly> <%= data['cats'] %>
+                                <% }); %>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Number of Dogs:</label>
+                            <% res3['rows'].forEach((data)=>{ %>
+                            <div class="col-sm-10 form-control" readonly> <%= data['dogs'] %>
+                                <% }); %>
+                            </div>
+                        </div>
+
+                        <a href="/bookings" class="btn btn-danger">Back </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleSideBar() {
+            document.getElementById('wrapper').classList.toggle('active');
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+    </script>
+
+    <% include ./footer.ejs %>

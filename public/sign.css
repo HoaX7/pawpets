@@ -1,0 +1,28 @@
+body {
+	background-image: url('http://digitalimagemakerworld.com/images/cute-pictures-of-puppies/35894388-cute-pictures-of-puppies.jpg');
+	background-size: cover;
+	overflow-y: hidden;
+}
+
+.jumbotron {
+	width: 450px;
+	float: right;
+	height: 100vh;
+	background-color: white;
+}
+
+.btn {
+	width: 100%;
+}
+
+h3 {
+	padding-bottom: 50px;
+}
+
+.sg {
+	font-size: 15px;
+}
+
+.sg:hover {
+	text-decoration: none;
+}

@@ -1,0 +1,112 @@
+<%  include ./header.ejs %>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <a id="na" class="navbar-brand" href="/"><img class="ig" src="https://cdn0.iconfinder.com/data/icons/pets-4/92/icon56-17-512.png" alt=""> PawPets</a>
+</nav>
+
+<link rel="stylesheet" type="text/css" href="sign.css">
+
+	<div class="jumbotron">
+	<h3 style="text-align:center;"><img class="ig" src="paw.png" alt=""> Pawpets </h3>
+<% include ./partials/messages %>
+<form action="/sign" method="POST">
+        <div class="form-group">
+          <input
+            type="name"
+            id="name"
+            name="name" required
+            class="form-control"
+            placeholder="Enter Name"
+            value="<%= typeof name != 'undefined' ? name : '' %>"
+          />
+        </div>
+        <div class="form-group">
+          <input required
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Enter Email"
+            value="<%= typeof email != 'undefined' ? email : '' %>"
+          />
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+          <div class="form-group">
+          <input
+            type="phone"
+            id="phone"
+            name="phone" required
+            class="form-control"
+            placeholder="Phone Number"
+            value="<%= typeof phone != 'undefined' ? phone : '' %>"
+          />
+        </div>       
+         <div class="form-group">
+          <select name="gender" class="form-control custom-select">
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+            <option value="3">Others</option>
+          </select>
+          </div>
+        <div class="form-group">
+          <input required
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Create Password"
+            value="<%= typeof password != 'undefined' ? password : '' %>"
+          />
+        </div>
+        <div class="form-group">
+          <input required
+            type="password"
+            id="password2"
+            name="password2"
+            class="form-control"
+            placeholder="Confirm Password"
+            value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="hidden"
+            id="roles"
+            name="roles"
+            value="Customer" style="display:block;"
+            class="form-control"
+           readonly
+          />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="myButton">
+          Register
+        </button>
+      </form>
+
+<p style="text-align:center;margin-top:50px;"><a class="sg" href="/login">Already have an account? sign in</a></p>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"
+  integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function() {
+    $('#myButton').click(function() {
+      $(this).prop("disabled",true);
+      $(this).html(
+        `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Signing up`
+      );
+    var $this = $(this);
+  $this.button('loading');
+  setTimeout(function() {
+    $('#myButton').prop("disabled",false);
+      $this.html('Register');
+    }, 2000);
+});
+
+});
+</script>
+<!-- <% include ./footer.ejs %> -->

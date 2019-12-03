@@ -1,0 +1,122 @@
+<link rel="stylesheet" type="text/css" href="/log.css">
+<link rel="stylesheet" type="text/css" href="/new.css">
+<style>
+    #pp {
+        color: rgb(48, 45, 45);
+    }
+
+    #pp:hover {
+        color: rgb(105, 99, 99);
+    }
+</style>
+<% include ./header.ejs %>
+<div>
+    <div id="wrapper">
+        <div id="sidebar">
+            <div class="toggle-btn" onclick="toggleSideBar()">
+                <span class="menu"><img src="/menu.png" alt=""></span>
+            </div>
+
+            <a id="pp" href="/">
+                <h2 class="display-4" style="font-size: 25px;">PawPets</h2>
+            </a>
+            <ul>
+                <% if(user.isAdmin){ %>
+                <a href="/users">
+                    <li id="user"><img src="/pet.png" alt=""> Users</li>
+                </a>
+                <a href="/settings">
+                    <li id="sett"><img src="/gear.png" alt=""> Settings</li>
+                </a>
+                <a href="/current">
+                    <li id="sett"><img src="/pie.png" alt=""> Status</li>
+                </a>
+                <% }; %>
+                <a href="/pets">
+                    <li id="pet" class="select"><img src="/dog.png" alt=""> <img src="/cat1.png" alt=""> Pets</li>
+                </a>
+                <a href="/bookings">
+                    <li id="book"><img src="/booking.png" alt=""> Bookings</li>
+                </a>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="dropdown">
+                    <a class="btn drop" href="#" role="button" data-toggle="dropdown">
+                        <p class="lead mb-3"><% if(user.gen){ %>
+                            <img src="/man.png" alt="">
+                            <% } else { %>
+                            <img src="/girl.png" alt="">
+                            <% } %> Welcome <%= user.name %></p>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <a href="/profiles" class=" dropdown-item">Profile</a>
+                        <a href="/logout" class="dropdown-item">Logout</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="jumbotron">
+                <div class="container">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/pets">Pets</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit pet</li>
+                        </ol>
+                        <% include ./partials/messages %>
+                    </nav>
+                    <% res1['rows'].forEach((data)=>{ %>
+                    <h2 style="padding: 10px;"><img src="/pencil.png" alt=""> Edit Pet(s)</h2>
+                    <form action="/pets/edit/<%= data['pid'] %>?_method=PUT" method="POST"">
+            <div class=" form-group row">
+                        <label for="" class="col-sm-2 col-form-label">PetName:</label>
+                        <div class="col-sm-10">
+                            <input type="text" value="<%= data['name'] %>" class="form-control" name="pname" id=""
+                                required>
+                        </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Type:</label>
+                    <div class="col-sm-10">
+                        <select style="width: 300px;" name="type" class="form-control custom-select my-1 mr-sm-2"
+                            id="CustomSelectPref">
+                            <option value="1">Dog</option>
+                            <option value="2">Cat</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Breed:</label>
+                    <div class="col-sm-10">
+                        <input type="text" value="<%= data['breed'] %>" class="form-control" name="breed">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Age:</label>
+                    <div class="col-sm-10">
+                        <input type="number" value="<%= data['age'] %>" name="age" class="form-control" min="1"
+                            max="16">
+                    </div>
+                </div>
+                <% }); %>
+                <button type="submit" style="margin-right: 20px;" class="btn btn-danger"><img style="color=white;"
+                        src="/save.png" alt=""> Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleSideBar() {
+        document.getElementById('wrapper').classList.toggle('active');
+        document.getElementById('sidebar').classList.toggle('active');
+    }
+
+</script>
+
+<% include ./footer.ejs %>

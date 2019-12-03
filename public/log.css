@@ -1,0 +1,102 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.btn.focus, .btn:focus {
+	box-shadow: none !important;
+}
+
+
+.dropdown {
+	margin-left: 20px;
+}
+
+#sidebar {
+	position: fixed;
+	width: 200px;
+	height: 100%;
+	background-color: white;
+	border-right: 1px solid grey;
+	left: -200px;
+	transition: all 500ms linear;
+}
+
+#sidebar.active {
+	left:0px;
+}
+
+#sidebar ul li {
+	color: rgba(0,0,0,0.65);
+	list-style: none;
+	padding: 15px 20px;
+}
+
+#sidebar .toggle-btn {
+	position: absolute;
+	left: 105%;
+	top: 15px;
+}
+
+a:hover {
+	text-decoration: none !important;
+}
+
+.select {
+	background-color: rgba(235, 47, 47, .1);
+	border-right: 1px solid red;
+	color: red !important;
+}
+
+#page-content-wrapper {
+	width: 100%;
+	padding-top: 15px;
+	margin: 0;
+	text-align: right;
+	transition: all 500ms linear;
+}
+
+.menu:hover {
+	cursor: pointer;
+}
+
+label {
+	padding-right: 15px;
+}
+
+
+.container {
+	text-align: left;
+	margin: auto;
+	padding: 2%;
+	border-radius: 5px;
+	background-color: white;
+}
+
+#sidebar ul li:hover {
+	color: red;
+	cursor: pointer;
+}
+
+form {
+	border: 1px solid rgb(233, 233, 233);
+	border-radius: 5px;
+	margin-top: 20px;
+	padding: 5%;
+	font-size: 15px;
+}
+
+table {
+	margin-top: 20px;
+}
+
+#wrapper.active #page-content-wrapper {
+	padding-left: 200px;
+	transition: all 500ms linear;
+}
+
+.display-4 {
+	padding: 30px;
+	margin-left: 20px;
+}
+
