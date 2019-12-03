@@ -22,3 +22,5 @@ This is an RDBMS project which helps to manage bookings and other pet details.
 
 --If you wanna revert migrations
 >npm run dbmigrate rollback
+
+@COPYRIGHT 2019 HOAX-
