@@ -85,7 +85,7 @@
               <div class="col-sm-10">
                 <% res1['rows'].forEach((data)=>{ %>
                 <% if(user.isAdmin){ %>
-                <input type="" value="" class="form-control" name="cid" id="" required>
+                <input type="" value="" class="form-control" placeholder="Customer ID" name="cid" id="" required>
                 <% } else { %>
                 <input type="hidden" value="<%= data['cid'] %>" class="form-control" name="cid" id="" required>
                 <% } %>
