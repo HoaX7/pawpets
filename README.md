@@ -6,6 +6,7 @@ This is an RDBMS project which helps to manage bookings and other pet details.
 - MongoDB (compass community recommended)
 
 #INITIAL SETUP
+>git clone https://github.com/HoaX7/pawpets.git
 >npm install
 
 --Initial Database Connections
