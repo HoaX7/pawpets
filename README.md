@@ -6,11 +6,11 @@ This is an RDBMS project which helps to manage bookings and other pet details.
 - MongoDB (compass community recommended)
 
 ## WARNING!!!!
-> IT IS NOT RECOMMENDED TO USE SENSITIVE PERSONAL DETAILS
-> I WILL NOT BE HELP RESPONSIBLE FOR YOUR CARELESSNESS 
+> IT IS NOT RECOMMENDED TO USE SENSITIVE PERSONAL DETAILS AS THIS IS A DEMO APPLICATION AND IS NOT SECURE ENOUGH
+> I WILL NOT BE HELD RESPONSIBLE FOR YOUR CARELESSNESS 
 
 ## IMPORTANT!
->After sighing up, i initially recommend you to create an Admin in your mongoDB users collection with the attribute "isAdmin: true" as there is no other shorter way to do so.
+>initially before signing up i recommend you to navigate to "./views/sign.ejs and change the value at line 76 to "Manager" and revert it back once you've signed up as a Manager to handle the rest of the functions efficiently. 
 
 #INITIAL SETUP
 >git clone https://github.com/HoaX7/pawpets.git
