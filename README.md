@@ -23,12 +23,13 @@ This is an RDBMS project which helps to manage bookings and other pet details.
 --If you wanna revert migrations
 >npm run dbmigrate rollback
 
+## IMPORTANT!
+>initially before signing up i recommend you to navigate to "./views/sign.ejs and change the value at line 76 to "Manager" and revert it back once you've signed up as a Manager to handle the rest of the functions efficiently.
+
 ## WARNING!!!!
 > IT IS NOT RECOMMENDED TO USE SENSITIVE PERSONAL DETAILS AS THIS IS A DEMO APPLICATION AND IS NOT SECURE ENOUGH
 > I WILL NOT BE HELD RESPONSIBLE FOR YOUR CARELESSNESS 
-
-## IMPORTANT!
->initially before signing up i recommend you to navigate to "./views/sign.ejs and change the value at line 76 to "Manager" and revert it back once you've signed up as a Manager to handle the rest of the functions efficiently. 
+ 
 
 
 
