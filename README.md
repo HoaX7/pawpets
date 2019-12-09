@@ -11,8 +11,9 @@ This is an RDBMS project which helps to manage bookings and other pet details.
 >npm install
 
 --Initial Database Connections
--Set up your postgreSQL PGUSER and PGPASSWORD
+-Set up your postgreSQL PGUSER and PGPASSWORD in .env
 -Navigate to the migrate.js and createdb.js and set your database password
+-Navigate to your mongodb "data" folder and run mongod
 
 --Creating Database
 >npm run dbcreate
@@ -20,11 +21,12 @@ This is an RDBMS project which helps to manage bookings and other pet details.
 --Running migrations
 >npm run dbmigrate migrate
 
+>npm run migrate-mongo up
+
 --If you wanna revert migrations
 >npm run dbmigrate rollback
 
-## IMPORTANT!
->initially before signing up i recommend you to navigate to "./views/sign.ejs and change the value at line 76 to "Manager" and revert it back once you've signed up as a Manager to handle the rest of the functions efficiently.
+>npm run migrate-mongo down
 
 ## WARNING!!!!
 > IT IS NOT RECOMMENDED TO USE SENSITIVE PERSONAL DETAILS AS THIS IS A DEMO APPLICATION AND IS NOT SECURE ENOUGH
