@@ -12,7 +12,9 @@ This is an RDBMS project which helps to manage bookings and other pet details.
 
 --Initial Database Connections
 -Set up your postgreSQL PGUSER and PGPASSWORD in .env
+
 -Navigate to the migrate.js and createdb.js and set your database password
+
 -Navigate to your mongodb "data" folder and run mongod
 
 --Creating Database
