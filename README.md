@@ -1,5 +1,5 @@
 # PAWPETS
-This is an RDBMS project which helps to manage bookings and other pet details. 
+This is an RDBMS project which helps you manage bookings and other pet details. 
 
 #BASIC SOFTWARE REQUIREMENTS
 - POSTGRESQL PG ADMIN 4
