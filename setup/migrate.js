@@ -3,7 +3,6 @@ var path = require('path');
 
 // @ COPYRIGHT 2019 CREATED BY HoaX
 
-//DO NOT TAMPER WITH THIS FILE UNLESS YOU KNOW WHAT YOU'RE DOING
 
 
 require('sql-migrations').run({

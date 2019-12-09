@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dbcreate": "node ./setup/createdb.js",
     "dbmigrate": "node ./setup/migrate.js",
+    "migrate-mongo": "./node_modules/.bin/migrate-mongo",
     "debug": "node --nolazy --inspect-brk=9229 myProgram.js",
     "start": "nodemon app.js"
   },
@@ -22,6 +23,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "method-override": "^3.0.0",
+    "migrate-mongo": "^7.0.1",
     "mongoose": "^5.7.6",
     "node-pg-migrate": "^3.23.3",
     "node-sql-migrations": "^1.0.7",
