@@ -30,6 +30,11 @@ This is an RDBMS project which helps you manage bookings and other pet details.
 
 >npm run migrate-mongo down
 
+--Manager login details
+-After you've run the migrations you can now login as a manager using the credentials
+
+> email: 'manager@gmail.com' password: 'password'
+
 ## WARNING!!!!
 > IT IS NOT RECOMMENDED TO USE SENSITIVE PERSONAL DETAILS AS THIS IS A DEMO APPLICATION AND IS NOT SECURE ENOUGH
 > I WILL NOT BE HELD RESPONSIBLE FOR YOUR CARELESSNESS 
